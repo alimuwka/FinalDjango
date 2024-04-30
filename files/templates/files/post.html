@@ -1,0 +1,64 @@
+{% extends 'files/base.html' %}
+
+{% block content %}
+
+<body class="post-body">
+
+    <div class="post-first-container">
+
+        <div class="post-container">
+    
+            <div class="post-image">
+                {% if post.photo %}
+                    <img src="{{ post.photo.url }}" alt="image" class="img-article-left">
+                {% endif %}
+            </div>
+            
+            <div class="post-right">
+                <h1>{{ post.title }}</h1>
+                <p>Год выпуска: {{ post.release_year }}</p>
+                <p>Рейтинг: {{ post.rating }}</p>
+                <p>Жанры: 
+                    {% for genre in post.genres.all %}
+                        {{ genre.name }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>Режиссеры: 
+                    {% for director in post.directors.all %}
+                        {{ director.first_name }} {{director.last_name }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>Актеры: 
+                    {% for actor in post.actors.all %}
+                        {{ actor.first_name}} {{actor.last_name }}
+                        {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>Страна: {{ post.country }}</p>
+                <p>Компания: {{ post.company }}</p>
+            </div>
+        
+        </div>
+        
+        <div class="post-description">
+            <div class="description-text">
+                {{ post.description|linebreaks }}
+            </div>
+        </div>
+
+        <div class="post-video">
+            <video id="post-video" src="{{post.video.url}}" controls autoplay onclick="playVideo()" class="video-post"></video>
+        </div>
+
+    </div>
+    <script>
+        function playVideo() {
+            var video = document.getElementById('post-video');
+            video.style.width = '100%';
+            video.style.height = '100%';
+        }
+    </script>
+</body>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% load static %}
+{% load exchange_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{title}}</title>
+	<link type="text/css" href="{% static 'files/css/styles.css' %}" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'files/images/zuko.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<video  id="background-video" autoplay muted loop class="video-bg" src="{% static 'files/video/planet2.mp4' %}" type="video/mp4"></video>
+<nav class="base-nav">
+	<a href="{% url 'home' %}"><div class="logo"> <img src="{% static  'files/images/logo.png' %}" alt="Logo" srcset=""></div></a>
+	{% if is_homepage %}	
+	<span id="toggle-categories" class="base-a">Показать категории</span>
+	<div id="categories-sidebar">
+			<!-- Здесь будут ваши категории -->
+			{% show_genres 'name' %}
+		</div>
+	{% endif %}
+	{% block mainmenu %}
+    {% for m in menu %}	
+        <a class="base-a" href="{% url m.url_name %}">{{m.title}}</a>
+	{% endfor %}
+    {% endblock mainmenu %}
+	<div class="reglog">
+		{% if user.is_authenticated %}
+		<a class="base-a">{{ user.username }}</a> <a class="base-a" href="{% url 'logout_user' %}">| Выйти </a>
+	{% else %}
+		<a class="base-a" href="{% url 'register' %}"> Регистрация |</a> <a class="base-a" href="{% url 'login' %}"> Войти </a>
+	{% endif %}
+	
+	</div>
+    
+</nav>
+    
+
+
+
+
+<!-- Блок контента -->
+	<div class="content-text">
+{% block content %}
+{% endblock %}
+		
+	</div>
+<!-- Конец блока контента -->
+<div class="list-pages">
+	<ul>
+		{% for p in paginator.page_range %}
+		<li class="page-num">
+			<a href="?page={{ p }}">{{p}}</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+
+</body>
+<script src="{% static 'files/js/index.js'%}"></script>
+</html>

@@ -1,0 +1,335 @@
+body{
+    margin: 0;
+    padding: 25px;
+    position: relative;
+    overflow-x: hidden;
+}
+.base-nav{
+    display: flex;
+    justify-content: space-around;
+    box-shadow: inset -1px 13px 44px -14px rgba(186,155,186,1);
+    height: 50px;
+    padding: 20px;
+    border-radius: 50px;
+    transition: 0.3s;
+    text-align: center;
+    align-items: center;
+}
+
+.base-nav::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.base-a{
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    cursor: pointer;
+
+}
+.base-a:hover{
+    color: gray;    
+}
+.index-a{
+    color: white;
+    text-decoration: none;
+
+}
+.index-div{
+    border-radius: 50px;
+    padding: 20px;
+    word-break: break-all;
+    height: 400px;
+    width: 400px; /* Ширина контейнера */
+    text-align: center;
+    padding: 20px; /* Добавим немного отступов вокруг элементов */
+    overflow: hidden; /* Скрыть текст, который выходит за пределы контейнера */
+    text-overflow: ellipsis; 
+    box-shadow: inset -1px 10px 44px -14px rgba(186,155,186,1);
+    background-size: cover;
+}
+.index-div:hover{
+    transition: 0.2s;
+    background-size: 0px;
+}
+.index-title,
+.index-description, .first, .last {
+    opacity: 0;
+    transition: opacity 0.3s ease; /* Добавление плавного перехода */
+}
+
+/* Показать текст при наведении мыши */
+.index-div:hover .index-title,
+.index-div:hover .index-description,
+.index-div:hover .first,
+.index-div:hover .last{
+    opacity: 1; /* Сделать текст видимым */
+}
+
+.index-container{
+    display: grid;
+    grid-template-columns: repeat(4,400px); /* Создание четырех столбцов равной ширины */
+    gap: 70px;
+    margin-top: 50px;
+    transition: margin-left 0.3s ease, grid-template-columns 0.3s ease; /* Анимация сдвига контента и изменения ширины столбцов */
+
+}
+
+
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1; /* Установка нижнего слоя для видео */
+    animation: playOnce 10s linear 0s 1; /* Анимация воспроизведения один раз */
+}
+
+
+::-webkit-scrollbar {
+    width: 10px; /* Ширина полосы прокрутки */
+    height: 4px; /* Высота полосы прокрутки */
+}
+
+/* Фоновая область полосы прокрутки */
+::-webkit-scrollbar-track {
+    background: #4a3e3e73; /* Цвет фона */
+}
+
+/* Стиль бегунка полосы прокрутки */
+::-webkit-scrollbar-thumb {
+    background: #88888800; /* Цвет бегунка */
+    border-radius: 5px; /* Радиус скругления углов бегунка */
+}
+
+/* При наведении курсора на полосу прокрутки */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Измененный цвет бегунка при наведении */
+}
+
+.logo img {
+    max-width: 100px; /* Укажите максимальную ширину для изображения */
+    max-height: 100px; /* Укажите максимальную высоту для изображения */
+}
+.logo {
+	background: url('../images/logo.png') 10px 5px;
+	width: 20px;
+	height: 20px;
+    margin: 0;
+    padding-bottom: 40px;
+}
+#categories-sidebar {
+    width: 200px;
+    height: 600px; /* Заполняем высоту экрана */
+    background-color: #f0f0f010;
+    position: fixed;
+    top: 170px;
+    padding-top: 30px;
+    left: -200px; /* Сдвигаем блок влево за пределы экрана */
+    transition: left 0.3s ease; /* Анимация перемещения блока */
+    box-shadow: inset -1px 10px 44px -14px rgba(186,155,186,1);
+    border-radius: 0px 50px 0px 50px;
+    color: white;
+}
+
+
+#categories-sidebar.show {
+    left: 50px; /* Показываем блок, сдвигая его влево */
+}
+
+.content-text {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Четыре столбца по умолчанию */
+    gap: 20px; /* Промежуток между элементами */
+    transition: margin-left 0.3s ease, grid-template-columns 0.3s ease; /* Анимация сдвига контента и изменения ширины столбцов */
+    margin-left: 0; /* Исходное значение отступа слева */
+}
+
+.content-text.shifted {
+    margin-left: 200px; /* Сдвигаем контент вправо при активации сайдбара */
+    grid-template-columns: repeat(3, 1fr); /* Три столбца при активации сайдбара */
+}
+.index-container.shifted{
+    margin-left: 200px; /* Сдвигаем контент вправо при активации сайдбара */
+    grid-template-columns: repeat(3, 1fr);
+
+}
+.selected{
+    text-decoration: none;
+    color: white;
+    list-style-type: none;
+    padding: 10px;
+    font-size: 20px;
+}
+.base-a-genres{
+    text-decoration: none;
+    color: white;
+}
+
+.base-a-genres:hover{
+    color:gray;
+}
+.article-panel {
+    display: flex;
+    justify-content: space-between;
+}
+img {max-width: 600px; height: auto;}
+
+img.img-article-left {
+	width: 400px;
+	height: 400px;
+	float: left;
+	padding: 0 10px 10px 0;
+    border-radius:50px;
+}
+
+
+img.img-article-left.thumb {
+	max-width: 150px;
+	height: auto;
+}
+
+.post-body{
+    color: white;
+}
+
+.post-container{
+    display: flex;
+    justify-content: space-between;
+}
+.post-first-container{
+    width: 900px;
+    margin: 30px 450px;
+    background-color: #5555558b;
+    padding: 30px;
+    border-radius: 50px;
+}
+.post-first-container:hover{
+    transition: 0.2s;
+    background-color: #555555b9;
+}
+.post-right{
+    font-size: 19px;
+}
+.post-description{
+    font-size: 24px;
+}
+.video-post{
+    width: 900px;
+    height: 400px;
+}
+.container-add{
+    color: white;
+
+}
+.add-container{
+    width: 600px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    background-color: #5555553d;
+    padding: 20px;
+}
+.container-add {
+    margin-left: 560px;
+    align-items: center;
+    text-align: center;
+}
+
+.add-container {
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+.form-field {
+    margin-bottom: 20px; /* Отступ между полями формы */
+}
+
+.form-label {
+    display: block; /* Сделать метку блочным элементом */
+}
+
+.form-input {
+    display: inline-block; /* Сделать поле ввода строчно-блочным элементом */
+    width: 500px; /* Занимать всю доступную ширину */
+}
+
+.form-error {
+    color: red; /* Цвет текста ошибки */
+}
+
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-input input[type="text"],
+.form-input input[type="email"],
+.form-input input[type="password"],
+.form-input input[type="number"],
+.form-input select,
+.form-input textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-top: 5px; /* добавлено для соответствия стилю */
+}
+
+.form-input input[type="file"] {
+    display: block; /* чтобы кнопка загрузки файла занимала всю ширину */
+    width: 100%;
+    margin-top: 5px; /* добавлено для соответствия стилю */
+}
+
+.form-error {
+    color: red;
+    font-size: 17px;
+    margin-top: 5px;
+}
+.list-pages {
+    text-align: center; /* Центрирование пагинации */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.list-pages ul {
+    padding: 0;
+    list-style-type: none; /* Убираем маркеры у списка */
+}
+
+.list-pages ul li {
+    display: inline-block;
+    margin-right: 5px; /* Расстояние между элементами */
+}
+
+.page-num a {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 50px; /* Радиус скругления */
+    background-color: #67535377; /* Белый фон */
+    color: #ffffff; /* Цвет текста */
+    text-decoration: none;
+    box-shadow: inset -1px 10px 44px -14px rgba(186,155,186,1);
+
+}
+
+.page-num a:hover {
+    background-color: #dddddd; /* Цвет фона при наведении */
+    color: black;
+}
+
+.btn{
+    padding: 20px;
+    width: 500px;
+    border-radius: 5px;
+    margin-top: 20px;
+}

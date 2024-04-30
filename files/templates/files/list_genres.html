@@ -1,0 +1,9 @@
+{% for g in genres %}
+    {% if g.movie_set.exists %}  <!-- Проверяем, есть ли у жанра фильмы -->
+        {% if g.pk == pk %}
+            <li class="selected">{{ g.name }}</li>
+        {% else %}
+            <li><a class="base-a-genres" href="{{ g.get_absolute_url }}">{{ g.name }}</a></li>
+        {% endif %}
+    {% endif %}    
+{% endfor %}

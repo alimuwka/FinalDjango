@@ -1,0 +1,24 @@
+{% extends 'files/base.html' %}
+
+{% block content %}
+<header class="index-header">
+</header>
+<body class="index-body">
+    <div class="index-container">
+        {% for i in posts %}
+        <a href="{{ i.get_absolute_url }}" class="index-a">
+            <div class="index-div" style="background-image: url('{{ i.photo.url }}');">
+                <div class="article-panel">
+                    <p class="first">{{ i.genres.all.0 }}</p>
+                    <p class="last">{{ i.update_date|date:"d-m-Y H:i:s" }}                </p>
+                </div>
+                <h1 class="index-title">{{i.title}}</h1>
+                <h3 class="index-description">{{i.description}}</h3>   
+            </div>
+        </a>
+            {% endfor %}
+    </div>
+
+</body>
+
+{% endblock %}
